@@ -11,10 +11,7 @@ public class StatsService {
     }
 
     public long averageAmount(long[] months) {
-        long sum = 0;
-        for (long month : months) {
-            sum = sum + month;
-        }
+        long sum = salesAmount(months);
         long average = sum / 12;
         return average;
 
@@ -23,69 +20,55 @@ public class StatsService {
 
     public long maxSalesMonth(long[] months) {
         long count = 0;
-        long maxMonth = 0;
-        long max = months[0];
+        long maxSales = 0;
+        long currentMonth = months[0];
         for (long month : months) {
             count++;
-            if (max <= month) {
-                max = month;
-                maxMonth = count;
-            }
+            if (currentMonth <= month) {
+                currentMonth = month;
+                maxSales = count;
 
+            }
         }
 
-        return maxMonth;
+        return maxSales;
     }
 
     public long minSalesMonth(long[] months) {
         long count = 0;
-        long minMonth = 0;
-        long max = months[0];
+        long minSales = 0;
+        long currentMonth = months[0];
         for (long month : months) {
             count++;
-            if (month <= max) {
-                max = month;
-                minMonth = count;
+            if (month <= currentMonth) {
+                currentMonth = month;
+                minSales = count;
             }
         }
-
-
-        return minMonth;
+        return minSales;
     }
 
     public long lowerMiddle(long[] months) {
-        long sum = 0;
         long count = 0;
-        for (long month : months) {
-            sum = sum + month;
-        }
-        long average = sum / 12;
+        long average = averageAmount(months);
         for (long month : months) {
             if (average > month) {
                 count++;
             }
 
         }
-
-
         return count;
     }
 
     public long upperMiddle(long[] months) {
-        long sum = 0;
         long count = 0;
-        for (long month : months) {
-            sum = sum + month;
-        }
-        long average = sum / 12;
+        long average = averageAmount(months);
         for (long month : months) {
             if (average < month) {
                 count++;
             }
 
         }
-
-
         return count;
     }
 }
